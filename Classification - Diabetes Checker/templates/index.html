@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Diabetes Checker</title>
+    <link rel="stylesheet" href="../static/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Diabetes Checker</h1>
+      <form action="/check" method="POST" enctype="multipart/form-data">
+        <div>
+          <label for="inp1">Number of times pregnant:</label>
+          <input type="number" name="inp1" id="inp1" required />
+        </div>
+        <div>
+          <label for="inp2"
+            >Plasma glucose concentration a 2 hours in an oral glucose tolerance
+            test:</label
+          >
+          <input type="number" name="inp2" id="inp2" required />
+        </div>
+        <div>
+          <label for="inp3">Diastolic blood pressure (mm Hg):</label>
+          <input type="number" name="inp3" id="inp3" required />
+        </div>
+        <div>
+          <label for="inp4">Triceps skin fold thickness (mm):</label>
+          <input type="number" name="inp4" id="inp4" required />
+        </div>
+        <div>
+          <label for="inp5">2-Hour serum insulin (mu U/ml):</label>
+          <input type="number" name="inp5" id="inp5" required />
+        </div>
+        <div>
+          <label for="inp6"
+            >Body mass index (weight in kg/(height in m)^2):</label
+          >
+          <input type="number" name="inp6" id="inp6" required />
+        </div>
+        <div>
+          <label for="inp7">Diabetes pedigree function:</label>
+          <input type="number" name="inp7" id="inp7" required />
+        </div>
+        <div>
+          <label for="inp8">Age (years):</label>
+          <input type="number" name="inp8" id="inp8" required />
+        </div>
+        <button type="submit">Check Diabetes</button>
+      </form>
+      <div class="results">
+        <h2>Results</h2>
+        <p>{{ data | safe }}</p>
+      </div>
+    </div>
+  </body>
+</html>

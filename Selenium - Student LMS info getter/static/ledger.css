@@ -1,0 +1,59 @@
+tfoot {
+  display: none;
+}
+
+h1 {
+  text-align: center;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 50px;
+}
+
+#ctl00_ContentPlaceHolder1_lblStudentName {
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  border-bottom: 2px solid black;
+  padding: 10px;
+  margin: 15px;
+}
+
+#ctl00_ContentPlaceHolder1_lblProgramStructure {
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  border-bottom: 2px solid black;
+  padding: 10px;
+  margin: 15px;
+}
+
+#ctl00_ContentPlaceHolder1_lblCurrentBalance {
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  border-bottom: 2px solid black;
+  padding: 10px;
+  margin: 15px;
+}
+
+#ctl00_ContentPlaceHolder1_TgrdStudentGeneralLedger {
+  width: 100% !important;
+}
+thead {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+thead tr th a {
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+tbody {
+  background-color: bisque;
+}
+
+tbody tr td {
+  padding: 5px;
+  text-align: center;
+}
+
+table {
+  text-align: center;
+}

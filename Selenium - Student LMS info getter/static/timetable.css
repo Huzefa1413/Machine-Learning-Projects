@@ -1,0 +1,31 @@
+* {
+  text-align: center;
+}
+
+h1 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 50px;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+}
+
+tr.rowgrid.head {
+  background-color: rgba(0, 0, 0, 0.4);
+  font-size: 18px;
+  font-family: Arial, sans-serif;
+}
+tr.rowgrid.head th {
+  border-bottom: 2px solid black;
+  padding: 5px;
+}
+tr.rowgrid {
+  background-color: bisque;
+}
+tr.rowgrid td {
+  border-bottom: 2px solid black;
+  font-size: 13px;
+  padding: 5px;
+}
