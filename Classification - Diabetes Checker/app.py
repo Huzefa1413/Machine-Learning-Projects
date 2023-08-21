@@ -1,60 +1,55 @@
-from flask import Flask, render_template, request
-import numpy as np
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LogisticRegression
+import streamlit as st
+import pickle
 
 
-def model(predict):
-    dataset = pd.read_csv("diabetes.csv")
-    X = dataset.iloc[:, :-1].values
-    y = dataset.iloc[:, -1].values
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.25, random_state=0
+sc = pickle.load(open("Scaler.pkl", "rb"))
+classifier = pickle.load(open("Classifier.pkl", "rb"))
+
+
+st.title("Diabetes Checker")
+
+col1, col2 = st.columns(2)
+
+with col1:
+    inp1 = st.number_input("Number of times pregnant:", step=1, min_value=0)
+with col2:
+    inp2 = st.number_input(
+        "Plasma glucose concentration a 2 hours in an oral glucose tolerance test:",
+        step=1,
+        min_value=0,
     )
-    sc = StandardScaler()
-    X_train = sc.fit_transform(X_train)
-    X_test = sc.transform(X_test)
-    classifier = LogisticRegression(random_state=0)
-    classifier.fit(X_train, y_train)
-    return classifier.predict(sc.transform([predict]))
 
 
-app = Flask(__name__)
+col1, col2 = st.columns(2)
+
+with col1:
+    inp3 = st.number_input("Diastolic blood pressure (mm Hg):", step=1, min_value=0)
+with col2:
+    inp4 = st.number_input("Triceps skin fold thickness (mm):", step=1, min_value=0)
 
 
-@app.route("/")
-def index():
-    return render_template("index.html")
+col1, col2 = st.columns(2)
 
+with col1:
+    inp5 = st.number_input("2-Hour serum insulin (mu U/ml):", step=1, min_value=0)
+with col2:
+    inp6 = st.number_input(
+        "Body mass index (weight in kg/(height in m)^2):",step=0.1, value= 0.0 , min_value=0.0
+    )
 
-@app.route("/check", methods=["POST"])
-def getuser():
-    inp1 = request.form["inp1"]
-    inp2 = request.form["inp2"]
-    inp3 = request.form["inp3"]
-    inp4 = request.form["inp4"]
-    inp5 = request.form["inp5"]
-    inp6 = request.form["inp6"]
-    inp7 = request.form["inp7"]
-    inp8 = request.form["inp8"]
-    input = [
-        float(inp1),
-        float(inp2),
-        float(inp3),
-        float(inp4),
-        float(inp5),
-        float(inp6),
-        float(inp7),
-        float(inp8),
-    ]
-    prediction = model(input)
+col1, col2 = st.columns(2)
+
+with col1:
+    inp7 = st.number_input("Diabetes pedigree function:", step=0.1, value= 0.0 , min_value=0.0)
+with col2:
+    inp8 = st.number_input("Age (years):", step=1, min_value=0)
+
+if st.button("Check Diabetes"):
+    prediction = classifier.predict(
+        sc.transform([[inp1, inp2, inp3, inp4, inp5, inp6, inp7, inp8]])
+    )
     if prediction[0] == 1:
         text = "Patient has diabetes"
     else:
-        text = "Patient dont have diabetes"
-    return render_template("index.html", data=text)
-
-
-app.run(debug=True)
+        text = "The patient doesn't have diabetes"
+    st.subheader(text)

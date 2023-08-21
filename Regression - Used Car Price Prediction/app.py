@@ -12,7 +12,7 @@ def predict_price(prediction):
     prediction = prediction.toarray() if hasattr (prediction, 'toarray') else prediction
     return regressor.predict(prediction)[0]
 
-st.title('Movie Recommendation System')
+st.title('Car Price Predictor')
 brand = st.selectbox(
     'Select Your Car Company: ',
     sorted(data['brand'].unique()))
@@ -21,7 +21,7 @@ name = st.selectbox(
 model = st.selectbox(
     'Select Your Car Model: ',
     sorted(data['model_date'].unique()))
-km = st.number_input('Enter Your Cars Km Driven: ')
+km = st.number_input('Enter Your Cars Km Driven: ',step=1,min_value=0)
 fuel = st.selectbox(
     'Select Your Car Fuel Type: ',
     sorted(data['fuel_type'].unique()))
