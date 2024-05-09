@@ -1,7 +1,6 @@
 import streamlit as st
 import pickle
 
-
 sc = pickle.load(open("Scaler.pkl", "rb"))
 classifier = pickle.load(open("Classifier.pkl", "rb"))
 
